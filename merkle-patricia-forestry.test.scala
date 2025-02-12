@@ -3,8 +3,9 @@ import scalus.Compiler
 import scalus.builtin.given
 import scalus.builtin.ByteString
 import scalus.builtin.ByteString.hex
+import scalus.merkle_patricia_forestry.Macros.{assertEqEval, assertEval}
 import scalus.prelude.List
-import scalus.merkle_patricia_forestry.MerklePatriciaForestry
+import scalus.merkle_patricia_forestry.{Macros, MerklePatriciaForestry}
 import scalus.merkle_patricia_forestry.MerklePatriciaForestry.ProofStep.*
 import scalus.merkle_patricia_forestry.MerklePatriciaForestry.{Neighbor, ProofStep}
 import scalus.uplc.eval.PlutusVM
@@ -13,6 +14,7 @@ import scala.language.implicitConversions
 
 class MerklePatriciaTreeTest extends FunSuite {
     private given Conversion[String, ByteString] = ByteString.fromString
+
     private given PlutusVM = PlutusVM.makePlutusV3VM()
 
     val proofBitcoin845999: List[ProofStep] = List(
@@ -42,12 +44,6 @@ class MerklePatriciaTreeTest extends FunSuite {
             hex"2170e155c04db534b1f0e27bb7604907d26b046e51dd7ca59f56693e8033b16403f9ff21fe66b6071042d35dcbad83950ffb1e3a2ad6673f96d043f67d58e82040e0c17f6230c44b857ed04dccd8ff1b84819abf26fa9e1e86d61fb08c80b74c0000000000000000000000000000000000000000000000000000000000000000"
       )
     )
-
-//    inline def assertEval(code: Any): Unit = {
-//        assert(code.asInstanceOf[Boolean])
-//        val sir = Compiler.compile(code)
-//        println(sir)
-//    }
 
     test("verify bitcoin block 845999") {
         val trie = MerklePatriciaForestry(hex"225a4599b804ba53745538c83bfa699ecf8077201b61484c91171f5910a4a8f9")
@@ -95,6 +91,8 @@ class MerklePatriciaTreeTest extends FunSuite {
           MerklePatriciaForestry(hex"507c03bc4a25fd1cac2b03592befa4225c5f3488022affa0ab059ca350de2353")
         )
     }
+
+    import Fruits.*
 
     /* An example trie made from a list of fruits.
    ╔═══════════════════════════════════════════════════════════════════╗
@@ -145,19 +143,6 @@ class MerklePatriciaTreeTest extends FunSuite {
        ├─ 63c88..[54 digits]..21ca #62bda6837164 { papaya[uid: 0] → 🤷 }
        └─ b69c0..[54 digits]..2145 #c8e795f7b215 { grapes[uid: 0] → 🍇 }
      */
-
-    /** Main fruit trie from which all tests derive */
-    val trie = MerklePatriciaForestry(hex"4acd78f345a686361df77541b2e0b533f53362e36620a1fdd3a13e0b61a3b078")
-
-    case class FruitData(
-        name: String,
-        value: String,
-        proof: List[ProofStep],
-        withoutRoot: MerklePatriciaForestry
-    )
-    object FruitData:
-        def apply(name: String, value: String, proof: List[ProofStep], withoutRoot: ByteString): FruitData =
-            FruitData(name, value, proof, MerklePatriciaForestry(withoutRoot))
 
     test("example kumquat membership") {
         assert(trie.has(kumquat.name, kumquat.value, kumquat.proof))
@@ -210,7 +195,7 @@ class MerklePatriciaTreeTest extends FunSuite {
         assertEquals(guava.withoutRoot.insert(guava.name, guava.value, guava.proof), trie)
         assertEquals(kiwi.withoutRoot.insert(kiwi.name, kiwi.value, kiwi.proof), trie)
         // FIXME: This test fails
-//        assertEquals(kumquat.withoutRoot.insert(kumquat.name, kumquat.value, kumquat.proof), trie)
+        //        assertEquals(kumquat.withoutRoot.insert(kumquat.name, kumquat.value, kumquat.proof), trie)
         assertEquals(lemon.withoutRoot.insert(lemon.name, lemon.value, lemon.proof), trie)
         assertEquals(lime.withoutRoot.insert(lime.name, lime.value, lime.proof), trie)
         assertEquals(mango.withoutRoot.insert(mango.name, mango.value, mango.proof), trie)
@@ -218,7 +203,7 @@ class MerklePatriciaTreeTest extends FunSuite {
         assertEquals(papaya.withoutRoot.insert(papaya.name, papaya.value, papaya.proof), trie)
         assertEquals(passion.withoutRoot.insert(passion.name, passion.value, passion.proof), trie)
         // FIXME: This test fails
-//        assertEquals(peach.withoutRoot.insert(peach.name, peach.value, peach.proof), trie)
+        //        assertEquals(peach.withoutRoot.insert(peach.name, peach.value, peach.proof), trie)
         assertEquals(pear.withoutRoot.insert(pear.name, pear.value, pear.proof), trie)
         assertEquals(pineapple.withoutRoot.insert(pineapple.name, pineapple.value, pineapple.proof), trie)
         assertEquals(plum.withoutRoot.insert(plum.name, plum.value, plum.proof), trie)
@@ -245,7 +230,7 @@ class MerklePatriciaTreeTest extends FunSuite {
         assertEquals(trie.delete(guava.name, guava.value, guava.proof), guava.withoutRoot)
         assertEquals(trie.delete(kiwi.name, kiwi.value, kiwi.proof), kiwi.withoutRoot)
         // FIXME: This test fails
-//        assertEquals(trie.delete(kumquat.name, kumquat.value, kumquat.proof), kumquat.withoutRoot)
+        //        assertEquals(trie.delete(kumquat.name, kumquat.value, kumquat.proof), kumquat.withoutRoot)
         assertEquals(trie.delete(lemon.name, lemon.value, lemon.proof), lemon.withoutRoot)
         assertEquals(trie.delete(lime.name, lime.value, lime.proof), lime.withoutRoot)
         assertEquals(trie.delete(mango.name, mango.value, mango.proof), mango.withoutRoot)
@@ -253,7 +238,7 @@ class MerklePatriciaTreeTest extends FunSuite {
         assertEquals(trie.delete(papaya.name, papaya.value, papaya.proof), papaya.withoutRoot)
         assertEquals(trie.delete(passion.name, passion.value, passion.proof), passion.withoutRoot)
         // FIXME: This test fails
-//        assertEquals(trie.delete(peach.name, peach.value, peach.proof), peach.withoutRoot)
+        //        assertEquals(trie.delete(peach.name, peach.value, peach.proof), peach.withoutRoot)
         assertEquals(trie.delete(pear.name, pear.value, pear.proof), pear.withoutRoot)
         assertEquals(trie.delete(pineapple.name, pineapple.value, pineapple.proof), pineapple.withoutRoot)
         assertEquals(trie.delete(plum.name, plum.value, plum.proof), plum.withoutRoot)
@@ -340,6 +325,23 @@ class MerklePatriciaTreeTest extends FunSuite {
             trie.delete(kumquat.name, "🤷", kiwi.proof)
         }
     }
+}
+
+case class FruitData(
+    name: String,
+    value: String,
+    proof: List[ProofStep],
+    withoutRoot: MerklePatriciaForestry
+)
+
+object FruitData:
+    def apply(name: String, value: String, proof: List[ProofStep], withoutRoot: ByteString): FruitData =
+        FruitData(name, value, proof, MerklePatriciaForestry(withoutRoot))
+
+object Fruits {
+
+    /** Main fruit trie from which all tests derive */
+    val trie = MerklePatriciaForestry(hex"4acd78f345a686361df77541b2e0b533f53362e36620a1fdd3a13e0b61a3b078")
 
     /** All fruit test data */
     val apple = FruitData(

@@ -8,6 +8,7 @@ import scalus.builtin.given
 import scalus.builtin.Builtins.*
 import scalus.builtin.ByteString
 import scalus.builtin.ByteString.hex
+import scalus.merkle_patricia_forestry.Macros.assertEqEval
 import scalus.merkle_patricia_forestry.Merkling.*
 import scalus.uplc.eval.PlutusVM
 
@@ -19,12 +20,10 @@ class MerklingTest extends ScalaCheckSuite:
     private given PlutusVM = PlutusVM.makePlutusV3VM()
 
     test("combine generates expected hashes for null sequences") {
-        val sir = Compiler.compile(combine(NullHash, NullHash))
-        println(sir.showHighlighted)
-        println(sir.toUplc().evaluateDebug)
-        assertEquals(combine(NullHash, NullHash), NullHash2)
-        assertEquals(combine(NullHash2, NullHash2), NullHash4)
-        assertEquals(combine(NullHash4, NullHash4), NullHash8)
+        assertEqEval(combine(NullHash, NullHash), NullHash2)
+        assertEqEval(combine(NullHash, NullHash), NullHash2)
+        assertEqEval(combine(NullHash2, NullHash2), NullHash4)
+        assertEqEval(combine(NullHash4, NullHash4), NullHash8)
     }
 
     test("suffix generates expected values for specific examples") {
