@@ -1,15 +1,19 @@
 import munit.FunSuite
+import scalus.Compiler
+import scalus.builtin.given
 import scalus.builtin.ByteString
 import scalus.builtin.ByteString.hex
 import scalus.prelude.List
 import scalus.merkle_patricia_forestry.MerklePatriciaForestry
 import scalus.merkle_patricia_forestry.MerklePatriciaForestry.ProofStep.*
 import scalus.merkle_patricia_forestry.MerklePatriciaForestry.{Neighbor, ProofStep}
+import scalus.uplc.eval.PlutusVM
 
 import scala.language.implicitConversions
 
 class MerklePatriciaTreeTest extends FunSuite {
     private given Conversion[String, ByteString] = ByteString.fromString
+    private given PlutusVM = PlutusVM.makePlutusV3VM()
 
     val proofBitcoin845999: List[ProofStep] = List(
       Branch(
@@ -38,6 +42,12 @@ class MerklePatriciaTreeTest extends FunSuite {
             hex"2170e155c04db534b1f0e27bb7604907d26b046e51dd7ca59f56693e8033b16403f9ff21fe66b6071042d35dcbad83950ffb1e3a2ad6673f96d043f67d58e82040e0c17f6230c44b857ed04dccd8ff1b84819abf26fa9e1e86d61fb08c80b74c0000000000000000000000000000000000000000000000000000000000000000"
       )
     )
+
+//    inline def assertEval(code: Any): Unit = {
+//        assert(code.asInstanceOf[Boolean])
+//        val sir = Compiler.compile(code)
+//        println(sir)
+//    }
 
     test("verify bitcoin block 845999") {
         val trie = MerklePatriciaForestry(hex"225a4599b804ba53745538c83bfa699ecf8077201b61484c91171f5910a4a8f9")
@@ -280,7 +290,7 @@ class MerklePatriciaTreeTest extends FunSuite {
     }
 
     test("fail fake update") {
-        interceptMessage[IllegalArgumentException]("requirement failed: Invalid proof or old value missing") {
+        interceptMessage[IllegalArgumentException]("Invalid proof or old value missing") {
             banana.withoutRoot.update(banana.name, banana.proof, "🍌", "🍆")
         }
     }
@@ -290,43 +300,43 @@ class MerklePatriciaTreeTest extends FunSuite {
     }
 
     test("fail inserting already present") {
-        interceptMessage[IllegalArgumentException]("requirement failed: Invalid proof or element exists") {
+        interceptMessage[IllegalArgumentException]("Invalid proof or element exists") {
             trie.insert(kiwi.name, "🥝", kiwi.proof)
         }
     }
 
     test("fail delete with different value") {
-        interceptMessage[IllegalArgumentException]("requirement failed: Invalid proof or element missing") {
+        interceptMessage[IllegalArgumentException]("Invalid proof or element missing") {
             trie.delete(kiwi.name, "🤷", kiwi.proof)
         }
     }
 
     test("fail insert already present with different value") {
-        interceptMessage[IllegalArgumentException]("requirement failed: Invalid proof or element exists") {
+        interceptMessage[IllegalArgumentException]("Invalid proof or element exists") {
             trie.insert(kiwi.name, "foo", kiwi.proof)
         }
     }
 
     test("fail insert nearby with wrong proof") {
-        interceptMessage[IllegalArgumentException]("requirement failed") {
+        intercept[IllegalArgumentException] {
             kiwi.withoutRoot.insert(guava.name, "🤷", kiwi.proof)
         }
     }
 
     test("fail insert higher with wrong proof") {
-        interceptMessage[IllegalArgumentException]("requirement failed") {
+        intercept[IllegalArgumentException] {
             kiwi.withoutRoot.insert(kumquat.name, "🤷", kiwi.proof)
         }
     }
 
     test("fail delete nearby with wrong proof") {
-        interceptMessage[IllegalArgumentException]("requirement failed") {
+        intercept[IllegalArgumentException] {
             trie.delete(guava.name, "🤷", kiwi.proof)
         }
     }
 
     test("fail delete higher with wrong proof") {
-        interceptMessage[IllegalArgumentException]("requirement failed") {
+        intercept[IllegalArgumentException] {
             trie.delete(kumquat.name, "🤷", kiwi.proof)
         }
     }

@@ -3,17 +3,25 @@ package scalus.merkle_patricia_forestry
 import munit.ScalaCheckSuite
 import org.scalacheck.{Arbitrary, Gen}
 import org.scalacheck.Prop.*
+import scalus.*
+import scalus.builtin.given
 import scalus.builtin.Builtins.*
 import scalus.builtin.ByteString
 import scalus.builtin.ByteString.hex
 import scalus.merkle_patricia_forestry.Merkling.*
+import scalus.uplc.eval.PlutusVM
 
 class MerklingTest extends ScalaCheckSuite:
     // Custom generator 32 random bytes ByteString
     private val byteArrayGen: Gen[ByteString] =
         Gen.containerOfN[Array, Byte](32, Arbitrary.arbByte.arbitrary).map(ByteString.fromArray)
 
+    private given PlutusVM = PlutusVM.makePlutusV3VM()
+
     test("combine generates expected hashes for null sequences") {
+        val sir = Compiler.compile(combine(NullHash, NullHash))
+        println(sir.showHighlighted)
+        println(sir.toUplc().evaluateDebug)
         assertEquals(combine(NullHash, NullHash), NullHash2)
         assertEquals(combine(NullHash2, NullHash2), NullHash4)
         assertEquals(combine(NullHash4, NullHash4), NullHash8)

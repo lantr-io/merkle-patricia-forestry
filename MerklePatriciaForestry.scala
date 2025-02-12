@@ -43,6 +43,16 @@ object MerklePatriciaForestry:
       */
     type Proof = List[ProofStep]
 
+    private inline def require(requirement: Boolean, message: String): Unit = {
+        if (!requirement)
+            throw new IllegalArgumentException(message)
+    }
+
+    private inline def require(requirement: Boolean): Unit = {
+        if (!requirement)
+            throw new IllegalArgumentException()
+    }
+
     /** Main Merkle Patricia Forestry class representing a key-value trie with cryptographic hash digests
       */
     extension (self: MerklePatriciaForestry)
@@ -83,7 +93,7 @@ object MerklePatriciaForestry:
     /** Create trie from root hash Root must be 32 bytes
       */
     def apply(root: ByteString): MerklePatriciaForestry =
-        require(root.length == Blake2b256DigestSize, "Root must be 32 bytes")
+        require(lengthOfByteString(root) == Blake2b256DigestSize, "Root must be 32 bytes")
         new MerklePatriciaForestry(root)
 
     /** Compute root hash from proof with value */
@@ -114,7 +124,7 @@ object MerklePatriciaForestry:
                 case ProofStep.Leaf(skip, key, neighborValue) =>
                     val nextCursor = cursor + 1 + skip
                     val root = doIncluding(path, value, nextCursor, steps)
-                    val neighbor = Neighbor(
+                    val neighbor = new Neighbor(
                       nibble = nibble(key, nextCursor - 1),
                       prefix = suffix(key, nextCursor),
                       root = neighborValue
@@ -155,7 +165,7 @@ object MerklePatriciaForestry:
                         case _ =>
                             val nextCursor = cursor + 1 + skip
                             val root = doExcluding(path, nextCursor, steps)
-                            val neighbor = Neighbor(
+                            val neighbor = new Neighbor(
                               nibble = nibble(key, cursor),
                               prefix = suffix(key, nextCursor),
                               root = value

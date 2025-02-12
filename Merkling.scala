@@ -1,9 +1,11 @@
 package scalus.merkle_patricia_forestry
 
+import scalus.Compile
 import scalus.builtin.Builtins.*
 import scalus.builtin.ByteString.hex
 import scalus.builtin.{ByteString, given}
 
+@Compile
 object Merkling:
     /** By convention, the hash of a null tree/trie is the null hash. Note that we also cache trees made of empty trees
       * to short-circuit the neighbor sparse-merkle tree calculation.
@@ -29,7 +31,7 @@ object Merkling:
       *   A new path with suffix appended according to cursor position
       */
     def suffix(path: ByteString, cursor: BigInt): ByteString =
-        if cursor % 2 == 0 then
+        if cursor % 2 == BigInt(0) then
             // Even cursor: drop cursor/2 bytes and append 0xff
             val dropped = sliceByteString(cursor / 2, lengthOfByteString(path), path)
             consByteString(0xff, dropped)
@@ -68,7 +70,7 @@ object Merkling:
       *   The nibble value as BigInt (0-15)
       */
     def nibble(self: ByteString, index: BigInt): BigInt =
-        if modInteger(index, 2) == 0 then
+        if modInteger(index, 2) == BigInt(0) then
             // Even index: take high nibble (divide by 16)
             quotientInteger(indexByteString(self, index / 2), 16)
         else
