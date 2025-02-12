@@ -151,8 +151,7 @@ object MerklePatriciaForestry:
                 case ProofStep.Fork(skip, neighbor) =>
                     steps match
                         case List.Nil =>
-                            val prefix =
-                                appendByteString(neighbor.prefix, consByteString(neighbor.nibble, ByteString.empty))
+                            val prefix = consByteString(neighbor.nibble, neighbor.prefix)
                             combine(prefix, neighbor.root)
                         case _ =>
                             val nextCursor = cursor + 1 + skip
