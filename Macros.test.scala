@@ -30,8 +30,9 @@ object Macros:
         '{
             Assertions.assert($code)
             val uplc = Compiler.compile($code).toUplc(generateErrorTraces = true)
-            uplc.evaluateDebug(using $vm) match
-                case r: Result.Success => ()
+            val r = uplc.evaluateDebug(using $vm)
+            r match
+                case _: Result.Success => ()
                 case r: Result.Failure => Assertions.fail("Failed", r.exception)(using $loc, $diffOptions)
         }
 
