@@ -4,9 +4,11 @@ import munit.diff.DiffOptions
 import munit.diff.console.AnsiColors
 import munit.{Assertions, Location}
 import scalus.*
+import scalus.sir.SirToUplc110Lowering
 import scalus.uplc.Constant.toValue
 import scalus.uplc.Term
 import scalus.uplc.eval.{PlutusVM, Result}
+import scalus.uplc.transform.{CaseConstrApply, EtaReduce, ForcedBuiltinsExtractor, Inliner}
 
 import scala.quoted.*
 
@@ -29,7 +31,12 @@ object Macros:
     )(using Quotes): Expr[Unit] =
         '{
             Assertions.assert($code)
-            val uplc = Compiler.compile($code).toUplc(generateErrorTraces = true)
+            val sir = Compiler.compile($code)
+            val uplc = SirToUplc110Lowering(sir, generateErrorTraces = true).lower()
+                |> EtaReduce.apply
+                |> Inliner.apply
+                |> CaseConstrApply.apply
+                |> ForcedBuiltinsExtractor.apply
             val r = uplc.evaluateDebug(using $vm)
             r match
                 case _: Result.Success => ()

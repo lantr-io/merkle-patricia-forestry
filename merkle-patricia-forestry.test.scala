@@ -18,31 +18,31 @@ class MerklePatriciaTreeTest extends FunSuite {
     test("verify bitcoin block 845999") {
 
         assertEval {
-            val proofBitcoin845999: List[ProofStep] = List.cons(
+            val proofBitcoin845999: List[ProofStep] = List.Cons(
               Branch(
                 skip = 0,
                 neighbors =
                     hex"bc13df27a19f8caf0bf922c900424025282a892ba8577095fd35256c9d553ca13a589f00f97a417d07903d138b92f25f879f9462994bf0e69b51fa19a67faef996c3f8196278c6ab196979911cc48b2d4a0d2a7aa5ef3f939eb056256d8efdfa0aa456963256af4fcb1ad43ef4e6323d1ca92c6d83ed4327904280228e1ba159"
               ),
-              List.cons(
+              List.Cons(
                 Branch(
                   skip = 0,
                   neighbors =
                       hex"eb63f921bd3ac576f979eba32490f8c0988f468d3308c2ed5480aaf6ff27cf9a0e610d8c38c17236104b995eb83aa062181525dccd72a755772004cc2bf4faaf3ac3518525f4b5dec498c8034c566a3539e524c6a2cd5fc8f19c6559a32260513edca31960cd1f5cc6882b820ef57ca65d740734379781db22b479ae0e3bdef3"
                 ),
-                List.cons(
+                List.Cons(
                   Branch(
                     skip = 0,
                     neighbors =
                         hex"e7bbc4fc5e5875f6f5469e8a016fa99a872075360e64d623f8b8688e6b63fee5091a7260d2a4fe1ca489c48020772e6d334c63115743e7c390450a139c6bc63b219aff62993846b5522bc1b1fffb5b485fc58d952a8f171bb6a000062fbdcb0eaa5637413d82489f0492c663ad0bac0a2a83b32e1b14e3940017cf830d47378e"
                   ),
-                  List.cons(
+                  List.Cons(
                     Branch(
                       skip = 0,
                       neighbors =
                           hex"464f4d2211c7fe6e7e1b298be6cfa6fd35d562d3b37ce8b979df45fac9dbc5e0d4d93d0b14d7061351763cee1d878b8686c658cfca7ef69cfd58d50ffc3a467340c3abc4067220f82f2dffe455038da3138859bffdb3d34fd7e84305de2ddfc61630c97424469f6de887d42ca155069789fa1b843bdf26496d29222f33f8f6ae"
                     ),
-                    List.cons(
+                    List.Cons(
                       Branch(
                         skip = 0,
                         neighbors =
@@ -66,31 +66,31 @@ class MerklePatriciaTreeTest extends FunSuite {
 
         assertEqEval(
           {
-              val proofBitcoin845602: List[ProofStep] = List.cons(
+              val proofBitcoin845602: List[ProofStep] = List.Cons(
                 Branch(
                   skip = 0,
                   neighbors =
                       hex"bc13df27a19f8caf0bf922c900424025282a892ba8577095fd35256c9d553ca120b8645121ebc9057f7b28fa4c0032b1f49e616dfb8dbd88e4bffd7c0844d29b011b1af0993ac88158342583053094590c66847acd7890c86f6de0fde0f7ae2479eafca17f9659f252fa13ee353c879373a65ca371093525cf359fae1704cf4a"
                 ),
-                List.cons(
+                List.Cons(
                   Branch(
                     skip = 0,
                     neighbors =
                         hex"255753863960985679b4e752d4b133322ff567d210ffbb10ee56e51177db057460b547fe42c6f44dfef8b3ecee35dfd4aa105d28b94778a3f1bb8211cf2679d7434b40848aebdd6565b59efdc781ffb5ca8a9f2b29f95a47d0bf01a09c38fa39359515ddb9d2d37a26bccb022968ef4c8e29a95c7c82edcbe561332ff79a51af"
                   ),
-                  List.cons(
+                  List.Cons(
                     Branch(
                       skip = 0,
                       neighbors =
                           hex"9d95e34e6f74b59d4ea69943d2759c01fe9f986ff0c03c9e25ab561b23a413b77792fa78d9fbcb98922a4eed2df0ed70a2852ae8dbac8cff54b9024f229e66629136cfa60a569c464503a8b7779cb4a632ae052521750212848d1cc0ebed406e1ba4876c4fd168988c8fe9e226ed283f4d5f17134e811c3b5322bc9c494a598b"
                     ),
-                    List.cons(
+                    List.Cons(
                       Branch(
                         skip = 0,
                         neighbors =
                             hex"b93c3b90e647f90beb9608aecf714e3fbafdb7f852cfebdbd8ff435df84a4116d10ccdbe4ea303efbf0f42f45d8dc4698c3890595be97e4b0f39001bde3f2ad95b8f6f450b1e85d00dacbd732b0c5bc3e8c92fc13d43028777decb669060558821db21a9b01ba5ddf6932708cd96d45d41a1a4211412a46fe41870968389ec96"
                       ),
-                      List.cons(
+                      List.Cons(
                         Branch(
                           skip = 0,
                           neighbors =
@@ -378,18 +378,18 @@ object Fruits {
     val apple = FruitData(
       "apple[uid: 58]",
       "🍎",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb47238ba5d16031b6bace4aee22156f5028b0ca56dc24f7247d6435292e82c039c3490a825d2e8deddf8679ce2f95f7e3a59d9c3e1af4a49b410266d21c9344d6d79519b8cdfbd053e5a86cf28a781debae71638cd77f85aad4b88869373d9dcfd"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             0,
             hex"5cddcd30a0a388cf6feb3fd6e112c96e9daf23e3a9c8a334e7044650471aaa9e",
             hex"f429821ddf89c9df3c7fbb5aa6fadb6c246d75ceede53173ce59d70dde375d14"
           ),
-          List.cons(
+          List.Cons(
             Leaf(
               0,
               hex"5e7ccfedd44c90423b191ecca1eb21dfbac865d561bace8c0f3e94ae7edf4440",
@@ -405,7 +405,7 @@ object Fruits {
     val apricot = FruitData(
       "apricot[uid: 0]",
       "🤷",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"4be28f4839135e1f8f5372a90b54bb7bfaf997a5d13711bb4d7d93f9d4e04fbe280ada5ef30d55433934bbc73c89d550ee916f62822c34645e04bb66540c120f965c07fa815b86794e8703cee7e8f626c88d7da639258d2466aae67d5d041c5a117abf0e19fb78e0535891d82e5ece1310a1cf11674587dbba304c395769a988"
@@ -418,12 +418,12 @@ object Fruits {
     val banana = FruitData(
       "banana[uid: 218]",
       "🍌",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb45fdf82687b1ab133324cebaf46d99d49f92720c5ded08d5b02f57530f2cc5a5fcf22cbaac4ab605dd13dbde57080661b53d8a7e23534c733acf50125cf0e5bcac9431d708d20021f1fa3f4f03468b8de194398072a402e7877376d06f747575a"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             1,
             hex"3ed002d6885ab5d92e1307fccd1d021c32ec429192aea10cb2fd688b92aef3ac",
@@ -438,12 +438,12 @@ object Fruits {
     val blueberry = FruitData(
       "blueberry[uid: 0]",
       "🫐",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"4be28f4839135e1f8f5372a90b54bb7bfaf997a5d13711bb4d7d93f9d4e04fbefa63eb4576001d8658219f928172eccb5448b4d7d62cd6d95228e13ebcbd5350be527bcfc7febe3c560057d97f4190bd24b537a322315f84daafab3ada562b50c2f2115774c117f184b58dba7a23d2c93968aa40387ceb0c9a9f53e4f594e881"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             0,
             hex"b67e71b092e6a54576fa23b0eb48c5e5794a3fb5480983e48b40e453596cc48b",
@@ -458,12 +458,12 @@ object Fruits {
     val cherry = FruitData(
       "cherry[uid: 0]",
       "🍒",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb45fdf82687b1ab133324cebaf46d99d49f92720c5ded08d5b02f57530f2cc5a5f1508f13471a031a21277db8817615e62a50a7427d5f8be572746aa5f0d498417520a7f805c5f674e2deca5230b6942bbc71586dc94a783eebe1ed58c9a864e53"
         ),
-        List.cons(
+        List.Cons(
           Branch(
             3,
             hex"2549707d84ecc2fa100fd85bf15f2ec99da70d4b3a39588c1138331eb0e00d3e85c09af929492a871e4fae32d9d5c36e352471cd659bcdb61de08f1722acc3b10eb923b0cbd24df54401d998531feead35a47a99f4deed205de4af81120f97610000000000000000000000000000000000000000000000000000000000000000"
@@ -477,12 +477,12 @@ object Fruits {
     val coconut = FruitData(
       "coconut[uid: 0]",
       "🥥",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"4be28f4839135e1f8f5372a90b54bb7bfaf997a5d13711bb4d7d93f9d4e04fbe280ada5ef30d55433934bbc73c89d550ee916f62822c34645e04bb66540c120f323def78732eace937391fc626efcd062552ebcf5e93f00352b86cb0f89daca0a22a7b4d767ada48673a4a9313a02a35ff47d2f55bcf10ae294127f590a4327c"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             0,
             hex"df779e7f171b7299c2cede28bb898c1ee3456d98657b95e8082cd375704b678a",
@@ -497,12 +497,12 @@ object Fruits {
     val cranberry = FruitData(
       "cranberry[uid: 0]",
       "🤷",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"4be28f4839135e1f8f5372a90b54bb7bfaf997a5d13711bb4d7d93f9d4e04fbe280ada5ef30d55433934bbc73c89d550ee916f62822c34645e04bb66540c120f323def78732eace937391fc626efcd062552ebcf5e93f00352b86cb0f89daca00a747d583e2e3db49524add1eea3063421fc04547e19c4e807810a537a63b379"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             0,
             hex"c8cac1a325376bbc49936988b4c720d7806e99c878bc645ad90cebb98302c3ca",
@@ -517,18 +517,18 @@ object Fruits {
     val fig = FruitData(
       "fig[uid: 68267]",
       "🤷",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"4be28f4839135e1f8f5372a90b54bb7bfaf997a5d13711bb4d7d93f9d4e04fbefa63eb4576001d8658219f928172eccb5448b4d7d62cd6d95228e13ebcbd5350be527bcfc7febe3c560057d97f4190bd24b537a322315f84daafab3ada562b50da0bdb30bf45c76153418a634f1bcecba8c601ca985fbca14b57582920d82acb"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             0,
             hex"a4b927e3735c7dbf9f1846844aad53e82362e47e32223d559333f4d154483c69",
             hex"5ee6f548bba6d9da3313a23b395efb48b440063a592d8592e73d87b79d1d887a"
           ),
-          List.cons(
+          List.Cons(
             Leaf(
               2,
               hex"af12ec41241cb0a5cae2a4a1232a64f3ca68f65342cf2a2f98cd6a00cf7971fe",
@@ -544,12 +544,12 @@ object Fruits {
     val grapefruit = FruitData(
       "grapefruit[uid: 0]",
       "🤷",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"4be28f4839135e1f8f5372a90b54bb7bfaf997a5d13711bb4d7d93f9d4e04fbefa63eb4576001d8658219f928172eccb5448b4d7d62cd6d95228e13ebcbd5350be527bcfc7febe3c560057d97f4190bd24b537a322315f84daafab3ada562b50c2f2115774c117f184b58dba7a23d2c93968aa40387ceb0c9a9f53e4f594e881"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             0,
             hex"b88701c48c6abd03dfc5f4538bb585102ddc2e4640c55c8c3c9bb7e0093d949e",
@@ -564,12 +564,12 @@ object Fruits {
     val grapes = FruitData(
       "grapes[uid: 0]",
       "🍇",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"4be28f4839135e1f8f5372a90b54bb7bfaf997a5d13711bb4d7d93f9d4e04fbe280ada5ef30d55433934bbc73c89d550ee916f62822c34645e04bb66540c120f965c07fa815b86794e8703cee7e8f626c88d7da639258d2466aae67d5d041c5ada1771d107c86c8e68da458063a47f9cdb63ddb9e922ab6ccb18d9e6d4b7aaf9"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             0,
             hex"f63c88d1bc9695dfc39eaf90a11248964311383a95345e5b04d6d8f25d5121ca",
@@ -584,18 +584,18 @@ object Fruits {
     val guava = FruitData(
       "guava[uid: 344]",
       "🤷",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb47238ba5d16031b6bace4aee22156f5028b0ca56dc24f7247d6435292e82c039c3490a825d2e8deddf8679ce2f95f7e3a59d9c3e1af4a49b410266d21c9344d6d08434fd717aea47d156185d589f44a59fc2e0158eab7ff035083a2a66cd3e15b"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             0,
             hex"4a522f84bcda4bebb725d5f2b92af615b57cc1777bb0d8b2c6c18c3e3e6520cd",
             hex"7c3715aba2db74d565a6ce6cc72f20d9cb4652ddb29efe6268be15b105e40911"
           ),
-          List.cons(
+          List.Cons(
             Leaf(
               1,
               hex"407c58473af4b3e5b24e65481294b0772ed6a7dd793937c6c90179960d154a22",
@@ -611,18 +611,18 @@ object Fruits {
     val kiwi = FruitData(
       "kiwi[uid: 0]",
       "🥝",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb47238ba5d16031b6bace4aee22156f5028b0ca56dc24f7247d6435292e82c039c3490a825d2e8deddf8679ce2f95f7e3a59d9c3e1af4a49b410266d21c9344d6d08434fd717aea47d156185d589f44a59fc2e0158eab7ff035083a2a66cd3e15b"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             0,
             hex"4a522f84bcda4bebb725d5f2b92af615b57cc1777bb0d8b2c6c18c3e3e6520cd",
             hex"7c3715aba2db74d565a6ce6cc72f20d9cb4652ddb29efe6268be15b105e40911"
           ),
-          List.cons(
+          List.Cons(
             Leaf(
               1,
               hex"4076d8ab234597ab6a35c03c805381bbc016025b36ff1f7df9c5009e1a8b73ef",
@@ -638,12 +638,12 @@ object Fruits {
     val kumquat = FruitData(
       "kumquat[uid: 0]",
       "🤷",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb47238ba5d16031b6bace4aee22156f5028b0ca56dc24f7247d6435292e82c039c3490a825d2e8deddf8679ce2f95f7e3a59d9c3e1af4a49b410266d21c9344d6d08434fd717aea47d156185d589f44a59fc2e0158eab7ff035083a2a66cd3e15b"
         ),
-        List.cons(
+        List.Cons(
           Fork(
             0,
             Neighbor(
@@ -661,12 +661,12 @@ object Fruits {
     val lemon = FruitData(
       "lemon[uid: 0]",
       "🍋",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb45fdf82687b1ab133324cebaf46d99d49f92720c5ded08d5b02f57530f2cc5a5f1508f13471a031a21277db8817615e62a50a7427d5f8be572746aa5f0d49841758c5e4a29601399a5bd916e5f3b34c38e13253f4de2a3477114f1b2b8f9f2f4d"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             0,
             hex"0389fd2d655e31dac50b00f3113aa327e36680e9df509d48eb255446d4891abc",
@@ -681,12 +681,12 @@ object Fruits {
     val lime = FruitData(
       "lime[uid: 0]",
       "🤷",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb45fdf82687b1ab133324cebaf46d99d49f92720c5ded08d5b02f57530f2cc5a5fcf22cbaac4ab605dd13dbde57080661b53d8a7e23534c733acf50125cf0e5bcac9431d708d20021f1fa3f4f03468b8de194398072a402e7877376d06f747575a"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             1,
             hex"3ee659e1fddc70f61cc65eb61478cd92a09fd7787ea4f913047469339f26b3b9",
@@ -701,12 +701,12 @@ object Fruits {
     val mango = FruitData(
       "mango[uid: 0]",
       "🥭",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb45fdf82687b1ab133324cebaf46d99d49f92720c5ded08d5b02f57530f2cc5a5f1508f13471a031a21277db8817615e62a50a7427d5f8be572746aa5f0d49841758c5e4a29601399a5bd916e5f3b34c38e13253f4de2a3477114f1b2b8f9f2f4d"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             0,
             hex"09d23032e6edc0522c00bc9b74edd3af226d1204a079640a367da94c84b69ecc",
@@ -721,12 +721,12 @@ object Fruits {
     val orange = FruitData(
       "orange[uid: 0]",
       "🍊",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"4be28f4839135e1f8f5372a90b54bb7bfaf997a5d13711bb4d7d93f9d4e04fbe280ada5ef30d55433934bbc73c89d550ee916f62822c34645e04bb66540c120f323def78732eace937391fc626efcd062552ebcf5e93f00352b86cb0f89daca00a747d583e2e3db49524add1eea3063421fc04547e19c4e807810a537a63b379"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             0,
             hex"c5dc3c068b45ce9dbf42d07fd86fc2dac165fd1b81ce73267b2aee242afba3f3",
@@ -741,12 +741,12 @@ object Fruits {
     val papaya = FruitData(
       "papaya[uid: 0]",
       "🤷",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"4be28f4839135e1f8f5372a90b54bb7bfaf997a5d13711bb4d7d93f9d4e04fbe280ada5ef30d55433934bbc73c89d550ee916f62822c34645e04bb66540c120f965c07fa815b86794e8703cee7e8f626c88d7da639258d2466aae67d5d041c5ada1771d107c86c8e68da458063a47f9cdb63ddb9e922ab6ccb18d9e6d4b7aaf9"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             0,
             hex"fb69c0d60ec9bfb6cafa5cf54675edfbb0017b873ee92a5dbb6bdabcfb352145",
@@ -761,18 +761,18 @@ object Fruits {
     val passion = FruitData(
       "passionfruit[uid: 0]",
       "🤷",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"4be28f4839135e1f8f5372a90b54bb7bfaf997a5d13711bb4d7d93f9d4e04fbefa63eb4576001d8658219f928172eccb5448b4d7d62cd6d95228e13ebcbd5350be527bcfc7febe3c560057d97f4190bd24b537a322315f84daafab3ada562b50da0bdb30bf45c76153418a634f1bcecba8c601ca985fbca14b57582920d82acb"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             0,
             hex"a4b927e3735c7dbf9f1846844aad53e82362e47e32223d559333f4d154483c69",
             hex"5ee6f548bba6d9da3313a23b395efb48b440063a592d8592e73d87b79d1d887a"
           ),
-          List.cons(
+          List.Cons(
             Leaf(
               2,
               hex"af12a10176ecbb08fc16658069ac132455796c5b62a5ef8985933c76652f50e7",
@@ -788,12 +788,12 @@ object Fruits {
     val peach = FruitData(
       "peach[uid: 0]",
       "🍑",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"4be28f4839135e1f8f5372a90b54bb7bfaf997a5d13711bb4d7d93f9d4e04fbefa63eb4576001d8658219f928172eccb5448b4d7d62cd6d95228e13ebcbd5350be527bcfc7febe3c560057d97f4190bd24b537a322315f84daafab3ada562b50da0bdb30bf45c76153418a634f1bcecba8c601ca985fbca14b57582920d82acb"
         ),
-        List.cons(
+        List.Cons(
           Fork(
             0,
             Neighbor(
@@ -811,12 +811,12 @@ object Fruits {
     val pear = FruitData(
       "pear[uid: 0]",
       "🍐",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"4be28f4839135e1f8f5372a90b54bb7bfaf997a5d13711bb4d7d93f9d4e04fbe280ada5ef30d55433934bbc73c89d550ee916f62822c34645e04bb66540c120f323def78732eace937391fc626efcd062552ebcf5e93f00352b86cb0f89daca0a22a7b4d767ada48673a4a9313a02a35ff47d2f55bcf10ae294127f590a4327c"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             0,
             hex"db30478ecc78451d06c1dfe24a35233a6d448fafa17af644fac693a4ca3f502a",
@@ -831,12 +831,12 @@ object Fruits {
     val pineapple = FruitData(
       "pineapple[uid: 12577]",
       "🍍",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb45fdf82687b1ab133324cebaf46d99d49f92720c5ded08d5b02f57530f2cc5a5fcf22cbaac4ab605dd13dbde57080661b53d8a7e23534c733acf50125cf0e5bca070a12b8b34948fc52296522a0b1816849392f7c2a73b8a25538ccebed176c9f"
         ),
-        List.cons(
+        List.Cons(
           Branch(
             2,
             hex"4e1fa8ba9cc8e18bbf0194b41e5fac140d0e58758706545f2354f2e42f7b4b0685c09af929492a871e4fae32d9d5c36e352471cd659bcdb61de08f1722acc3b10eb923b0cbd24df54401d998531feead35a47a99f4deed205de4af81120f97610000000000000000000000000000000000000000000000000000000000000000"
@@ -850,12 +850,12 @@ object Fruits {
     val plum = FruitData(
       "plum[uid: 15492]",
       "🤷",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb45fdf82687b1ab133324cebaf46d99d49f92720c5ded08d5b02f57530f2cc5a5f1508f13471a031a21277db8817615e62a50a7427d5f8be572746aa5f0d498417520a7f805c5f674e2deca5230b6942bbc71586dc94a783eebe1ed58c9a864e53"
         ),
-        List.cons(
+        List.Cons(
           Branch(
             3,
             hex"1955c87798c9f03af2f38429ebdeeefe0a0c84db8e583df37561abf0c64f46ca85c09af929492a871e4fae32d9d5c36e352471cd659bcdb61de08f1722acc3b1f34025c0e276d328068b15d428480914fd73946ae94a5f45c3530e3decdeefdf0000000000000000000000000000000000000000000000000000000000000000"
@@ -869,12 +869,12 @@ object Fruits {
     val pomegranate = FruitData(
       "pomegranate[uid: 0]",
       "🤷",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb45fdf82687b1ab133324cebaf46d99d49f92720c5ded08d5b02f57530f2cc5a5fcf22cbaac4ab605dd13dbde57080661b53d8a7e23534c733acf50125cf0e5bca070a12b8b34948fc52296522a0b1816849392f7c2a73b8a25538ccebed176c9f"
         ),
-        List.cons(
+        List.Cons(
           Branch(
             2,
             hex"03c59510714326934442799b6960ed35c11bb26ea47746839d9ab0635887aa13b60d6d31fb16509758290f509e419f55abb79ba2ca63c9b329f97f69f9e5b4f90eb923b0cbd24df54401d998531feead35a47a99f4deed205de4af81120f97610000000000000000000000000000000000000000000000000000000000000000"
@@ -888,7 +888,7 @@ object Fruits {
     val raspberry = FruitData(
       "raspberry[uid: 0]",
       "🤷",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb47238ba5d16031b6bace4aee22156f5028b0ca56dc24f7247d6435292e82c039cc9e7ff03faba170e98cd3c24338b95b1ce1b8a621d1016418f1494bbeb9e4a4a0000000000000000000000000000000000000000000000000000000000000000"
@@ -901,12 +901,12 @@ object Fruits {
     val strawberry = FruitData(
       "strawberry[uid: 2532]",
       "🍓",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb45fdf82687b1ab133324cebaf46d99d49f92720c5ded08d5b02f57530f2cc5a5fcf22cbaac4ab605dd13dbde57080661b53d8a7e23534c733acf50125cf0e5bca070a12b8b34948fc52296522a0b1816849392f7c2a73b8a25538ccebed176c9f"
         ),
-        List.cons(
+        List.Cons(
           Branch(
             2,
             hex"03c59510714326934442799b6960ed35c11bb26ea47746839d9ab0635887aa13eaf6d47da35b10a0585256dfdb4e5a8456e02d276a6c554842bf3e4148160ba70eb923b0cbd24df54401d998531feead35a47a99f4deed205de4af81120f97610000000000000000000000000000000000000000000000000000000000000000"
@@ -920,7 +920,7 @@ object Fruits {
     val tangerine = FruitData(
       "tangerine[uid: 11]",
       "🍊",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"4be28f4839135e1f8f5372a90b54bb7bfaf997a5d13711bb4d7d93f9d4e04fbefa63eb4576001d8658219f928172eccb5448b4d7d62cd6d95228e13ebcbd5350c1e96bcc431893eef34e03989814375d439faa592edf75c9e5dc10b3c30766700000000000000000000000000000000000000000000000000000000000000000"
@@ -933,12 +933,12 @@ object Fruits {
     val tomato = FruitData(
       "tomato[uid: 83468]",
       "🍅",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb45fdf82687b1ab133324cebaf46d99d49f92720c5ded08d5b02f57530f2cc5a5f1508f13471a031a21277db8817615e62a50a7427d5f8be572746aa5f0d498417520a7f805c5f674e2deca5230b6942bbc71586dc94a783eebe1ed58c9a864e53"
         ),
-        List.cons(
+        List.Cons(
           Branch(
             3,
             hex"1955c87798c9f03af2f38429ebdeeefe0a0c84db8e583df37561abf0c64f46ca85c09af929492a871e4fae32d9d5c36e352471cd659bcdb61de08f1722acc3b1a93bd84b815df138ab148bfdc2c3ee94f0cdbbb6ab8a38d429a7a8895c470ce70000000000000000000000000000000000000000000000000000000000000000"
@@ -952,12 +952,12 @@ object Fruits {
     val watermelon = FruitData(
       "watermelon[uid: 0]",
       "🍉",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb47238ba5d16031b6bace4aee22156f5028b0ca56dc24f7247d6435292e82c039c3490a825d2e8deddf8679ce2f95f7e3a59d9c3e1af4a49b410266d21c9344d6d79519b8cdfbd053e5a86cf28a781debae71638cd77f85aad4b88869373d9dcfd"
         ),
-        List.cons(
+        List.Cons(
           Fork(
             0,
             Neighbor(
@@ -975,18 +975,18 @@ object Fruits {
     val yuzu = FruitData(
       "yuzu[uid: 0]",
       "🤷",
-      List.cons(
+      List.Cons(
         Branch(
           0,
           hex"c7bfa4472f3a98ebe0421e8f3f03adf0f7c4340dec65b4b92b1c9f0bed209eb47238ba5d16031b6bace4aee22156f5028b0ca56dc24f7247d6435292e82c039c3490a825d2e8deddf8679ce2f95f7e3a59d9c3e1af4a49b410266d21c9344d6d79519b8cdfbd053e5a86cf28a781debae71638cd77f85aad4b88869373d9dcfd"
         ),
-        List.cons(
+        List.Cons(
           Leaf(
             0,
             hex"5cddcd30a0a388cf6feb3fd6e112c96e9daf23e3a9c8a334e7044650471aaa9e",
             hex"f429821ddf89c9df3c7fbb5aa6fadb6c246d75ceede53173ce59d70dde375d14"
           ),
-          List.cons(
+          List.Cons(
             Leaf(
               0,
               hex"5ed71f91166242e8477758810ad103aff35313b175b1762b0efe800fa9a126d2",

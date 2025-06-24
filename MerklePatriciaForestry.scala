@@ -1,8 +1,8 @@
 package scalus.merkle_patricia_forestry
 import scalus.Compile
 import scalus.builtin.Builtins.*
-import scalus.builtin.{ByteString, given}
-import scalus.prelude.List
+import scalus.builtin.ByteString
+import scalus.prelude.{List, require}
 
 /** A Merkle Patricia Forestry (MPF) is a key:value structure which stores elements in a radix trie following a key, and
   * where nodes also contains a cryptographic hash digest of the sub-trie or value they hold.
@@ -42,16 +42,6 @@ object MerklePatriciaForestry:
       * element being proved.
       */
     type Proof = List[ProofStep]
-
-    private inline def require(requirement: Boolean, message: String): Unit = {
-        if (!requirement)
-            throw new IllegalArgumentException(message)
-    }
-
-    private inline def require(requirement: Boolean): Unit = {
-        if (!requirement)
-            throw new IllegalArgumentException()
-    }
 
     /** Main Merkle Patricia Forestry class representing a key-value trie with cryptographic hash digests
       */
@@ -124,7 +114,7 @@ object MerklePatriciaForestry:
                 case ProofStep.Leaf(skip, key, neighborValue) =>
                     val nextCursor = cursor + 1 + skip
                     val root = doIncluding(path, value, nextCursor, steps)
-                    val neighbor = new Neighbor(
+                    val neighbor = Neighbor(
                       nibble = nibble(key, nextCursor - 1),
                       prefix = suffix(key, nextCursor),
                       root = neighborValue
@@ -164,7 +154,7 @@ object MerklePatriciaForestry:
                         case _ =>
                             val nextCursor = cursor + 1 + skip
                             val root = doExcluding(path, nextCursor, steps)
-                            val neighbor = new Neighbor(
+                            val neighbor = Neighbor(
                               nibble = nibble(key, cursor),
                               prefix = suffix(key, nextCursor),
                               root = value
