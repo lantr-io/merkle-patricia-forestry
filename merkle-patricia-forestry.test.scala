@@ -1,8 +1,8 @@
 import munit.FunSuite
 import scalus.{Compile, Compiler}
-import scalus.builtin.given
 import scalus.builtin.ByteString
 import scalus.builtin.ByteString.hex
+import scalus.cardano.onchain.RequirementError
 import scalus.merkle_patricia_forestry.Macros.{assertEqEval, assertEval}
 import scalus.prelude.List
 import scalus.merkle_patricia_forestry.{Macros, MerklePatriciaForestry}
@@ -294,7 +294,7 @@ class MerklePatriciaTreeTest extends FunSuite {
     }
 
     test("fail fake update") {
-        interceptMessage[IllegalArgumentException]("Invalid proof or old value missing") {
+        interceptMessage[RequirementError]("Invalid proof or old value missing") {
             banana.withoutRoot.update(banana.name, banana.proof, "🍌", "🍆")
         }
     }
@@ -304,43 +304,43 @@ class MerklePatriciaTreeTest extends FunSuite {
     }
 
     test("fail inserting already present") {
-        interceptMessage[IllegalArgumentException]("Invalid proof or element exists") {
+        interceptMessage[RequirementError]("Invalid proof or element exists") {
             trie.insert(kiwi.name, "🥝", kiwi.proof)
         }
     }
 
     test("fail delete with different value") {
-        interceptMessage[IllegalArgumentException]("Invalid proof or element missing") {
+        interceptMessage[RequirementError]("Invalid proof or element missing") {
             trie.delete(kiwi.name, "🤷", kiwi.proof)
         }
     }
 
     test("fail insert already present with different value") {
-        interceptMessage[IllegalArgumentException]("Invalid proof or element exists") {
+        interceptMessage[RequirementError]("Invalid proof or element exists") {
             trie.insert(kiwi.name, "foo", kiwi.proof)
         }
     }
 
     test("fail insert nearby with wrong proof") {
-        intercept[IllegalArgumentException] {
+        intercept[RequirementError] {
             kiwi.withoutRoot.insert(guava.name, "🤷", kiwi.proof)
         }
     }
 
     test("fail insert higher with wrong proof") {
-        intercept[IllegalArgumentException] {
+        intercept[RequirementError] {
             kiwi.withoutRoot.insert(kumquat.name, "🤷", kiwi.proof)
         }
     }
 
     test("fail delete nearby with wrong proof") {
-        intercept[IllegalArgumentException] {
+        intercept[RequirementError] {
             trie.delete(guava.name, "🤷", kiwi.proof)
         }
     }
 
     test("fail delete higher with wrong proof") {
-        intercept[IllegalArgumentException] {
+        intercept[RequirementError] {
             trie.delete(kumquat.name, "🤷", kiwi.proof)
         }
     }
